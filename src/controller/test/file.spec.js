@@ -14,7 +14,7 @@ describe('getContent', () => {
 const outputLinks = [{
   href:'https://www.bing.com/translator', 
   text:'Haz clic aquí para más información', 
-  file:'C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src\\controller\\test\\test-md\\README.md'
+  // file:'C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src\\controller\\test\\test-md\\README.md'
 }];
 
 describe('getLinks', () => {
@@ -22,6 +22,6 @@ describe('getLinks', () => {
     expect(typeof getLinks).toBe('function');
   });
   it('Debería devolver un array de objetos(href, text, file)',() => {
-    expect(getLinks(outputContent)).toBe(outputLinks);
+    expect(getLinks(outputContent)).toEqual(outputLinks);
   });
 });
