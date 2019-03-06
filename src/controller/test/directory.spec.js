@@ -1,4 +1,17 @@
-import { isFilePath, searchFilesMd } from '../directory.js'
+import { isFilePath, getPathsFromDirectory,  searchFilesMd } from '../directory.js'
+
+const outputPaths = [
+  'C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src\\controller\\test\\directory-test\\directory1\\directory2\\help.md',
+  'C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src\\controller\\test\\directory-test\\directory1\\directory2\\style.css',
+  'C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src\\controller\\test\\directory-test\\directory1\\main.js',
+  'C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src\\controller\\test\\directory-test\\hola.md',
+  'C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src\\controller\\test\\directory-test\\README.md'];
+
+const outputFilesMd = [
+  'C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src\\controller\\test\\directory-test\\directory1\\directory2\\help.md',
+  'C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src\\controller\\test\\directory-test\\hola.md',
+  'C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src\\controller\\test\\directory-test\\README.md'
+];
 
 describe('isFilePath', () => {
   it('Debería ser una función', () => {
@@ -12,11 +25,20 @@ describe('isFilePath', () => {
   });
 });
 
+describe('getPathsFromDirectory', () => {
+  it('Debería ser una función', () => {
+    expect(typeof getPathsFromDirectory).toBe('function');
+  });
+  it('Debería recibir la ruta de un directorio y devolver un array con todas las rutas de sus archivos', () =>{
+  expect(getPathsFromDirectory("C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src\\controller\\test\\directory-test")).toEqual(outputPaths);
+  });
+});
+
 describe('searchFilesMd', () => {
   it('Debería ser una función', () => {
     expect(typeof searchFilesMd).toBe('function');
   });
-  it('Debería recibir la ruta de un directorio, buscar y obtener los archivos .md', () => {
-    expect(searchFilesMd('C:\\Users\\Lab\\projects\\src')).toBe(['C:\\Users\\Lab\\projects\\src\\README.md', 'C:\\Users\\Lab\\projects\\src\\test.md']);
+  it('Debería recibir un array de rutas de archivos y obtener solo los archivos .md', () => {
+    expect(searchFilesMd(outputPaths)).toEqual(outputFilesMd);
   });
 });
