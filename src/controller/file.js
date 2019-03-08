@@ -6,10 +6,7 @@ const { JSDOM } = jsdom;
 import showdown from 'showdown';
 const converter = new showdown.Converter();
 
-export const getContent = (routeFile) => {
-  return fs.readFileSync(routeFile).toString();
-  // return fileContent;
-};
+export const getContent = routeFile => fs.readFileSync(routeFile).toString();
 
 export const getLinks = (contentFile, routeFile) => {
   const contentHTML = converter.makeHtml(contentFile);
@@ -17,7 +14,10 @@ export const getLinks = (contentFile, routeFile) => {
   const arrayOfTagsA = dom.window.document.querySelectorAll('a');
   let arrNew = [];
   arrayOfTagsA.forEach(elem => {
-    arrNew.push({href: elem.href, text: elem.textContent, file: routeFile});
+    arrNew.push({
+      href: elem.href, 
+      text: (elem.textContent).slice(0,50), 
+      file: routeFile});
   });
   return arrNew;
 };
