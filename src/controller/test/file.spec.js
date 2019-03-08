@@ -1,7 +1,10 @@
+import path from 'path';
 import { getContent, getLinks } from '../file.js'
 
+const cwd = process.cwd();
+
 const outputContent = `[Haz clic aquí para más información](https://www.bing.com/translator)`
-const routeFile = "C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src\\controller\\test\\directory-test\\README.md";
+const routeFile = path.join(cwd, "src\\controller\\test\\directory-test\\README.md");
 
 describe('getContent', () => {
   it('Debería ser una función', () => {
