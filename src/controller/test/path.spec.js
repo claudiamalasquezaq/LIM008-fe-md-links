@@ -1,14 +1,17 @@
+import path from 'path';
 import { convertPathToAbsolute, isAbsolutePath, isValidPath } from '../path.js';
+
+const cwd = process.cwd();
 
 describe('isValidPath', () => {
   it('Debería ser una función', () => {
     expect(typeof isValidPath).toBe('function');
   });
   it('Debería retornar true si es la ruta es válida', () => {
-    expect(isValidPath('C:\\Users\\VIDEA\\CMMA\\projects\\LIM008-fe-md-links\\src')).toBe(true);
+    expect(isValidPath(path.join(cwd, '\\src'))).toBe(true);
   });
   it('Debería retornar false si es la ruta no es válida', () => {
-    expect(isValidPath('C:\\Users\\C:\VIDEA\\CMMA\\projects')).toBe(false);
+    expect(isValidPath('C:\\Users\\C:\\projects')).toBe(false);
   });
 });
 
@@ -17,7 +20,7 @@ describe('isAbsolutePath', () => {
     expect(typeof isAbsolutePath).toBe('function');
   });
   it('Debería retornar true si la ruta es absoluta', () => {
-    expect(isAbsolutePath('C:\\Users\\CMMA\\src\\README.md')).toBe(true);
+    expect(isAbsolutePath(path.join(cwd, 'README.md'))).toBe(true);
   });
   it('Debería retornar false si la ruta es relativa', () => {
     expect(isAbsolutePath('..\\src\\README.md')).toBe(false);
@@ -29,6 +32,6 @@ describe('convertPathToAbsolute', () => {
     expect(typeof convertPathToAbsolute).toBe('function');
   });
   it('Debería recibir una ruta relativa y retornar la ruta absoluta', () => {
-  expect(convertPathToAbsolute('..\\src\\README.md')).toBe('C:\\Users\\VIDEA\\CMMA\\projects\\src\\README.md');
+  expect(convertPathToAbsolute('..\\LIM008-fe-md-links\\src\\README.md')).toBe(path.join(cwd, 'src\\README.md'));
   });
 });
