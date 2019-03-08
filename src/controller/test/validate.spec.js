@@ -1,7 +1,7 @@
 import { validateLinks } from '../validate.js';
 
-const arrInput = [{file: 'C:\\Users\\Lab\\projects\\src\\README.md', href: 'www.abc.com', text: 'Este es el link'}];
-const arrOutput = [{file: 'C:\\Users\\Lab\\projects\\src\\README.md', href: 'www.abc.com', text: 'Este es el link', status: "ok"}];
+const arrInput = [{href: 'https://www.npmjs.com/package/whatwg-fetch#installation', text: 'Este es el link', file: 'C:\\Users\\Lab\\projects\\src\\README.md'}];
+const arrOutput = [{href: 'https://www.npmjs.com/package/whatwg-fetch#installation', text: 'Este es el link', file: 'C:\\Users\\Lab\\projects\\src\\README.md', status: 200, statusText: "ok"}];
 
 describe('validateLinks', () => {
   it('Debería ser una función', () => {
