@@ -1,34 +1,23 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-const validateLinks = arrLinks => {
-    let arrPromises = [];
-    const arrNew = arrLinks.map(element => new Promise((resolve, reject) => {
-      fetch(element.href)
+export const validateLinks = arrLinks => {
+  const arrNew = arrLinks.map(element => new Promise((resolve, reject) => {
+    return fetch(element.href)
       .then((res) => {
         if(res.status >= 200 && res.status < 400){
-          const newObj = {
-            href: element.href, 
-            text: element.text, 
-            file: element.file, 
-            status: res.status, 
-            statusText: res.statusText
-          };
-          resolve(newObj);
+          element.status = res.status;
+          element.statusText = res.statusText;
+          resolve(element);
         } else {
-          const newObj = {
-            href: element.href, 
-            text: element.text, 
-            file: element.file, 
-            status: res.status, 
-            statusText: 'Fail'
-          };
-          resolve(newObj);
+          element.status = res.status;
+          element.statusText = 'Fail';
+          resolve(element);
         }
       })
       .catch(err => reject(err));
     }));
-    Promise.all(arrNew)
+    return Promise.all(arrNew)
     .then((res) => {
-      arrPromises.push(res);
-    });
-  };
+      return res;
+    })
+};
