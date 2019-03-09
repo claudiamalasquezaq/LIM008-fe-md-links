@@ -8,17 +8,20 @@ export const isFilePath = (route) => {
 };
 
 export const getPathsFromDirectory = route => {
-	let arrPathFiles = [];
-  const readDirectory = fs.readdirSync(route);
-  readDirectory.forEach(file => {
-    const pathFile = path.join(route, file);
-    const stats = fs.statSync(pathFile);
-    if (stats.isDirectory()){
-      arrPathFiles = arrPathFiles.concat(getPathsFromDirectory(pathFile))
-    } else {
-      arrPathFiles.push(pathFile);
-    }
-  })
+  let arrPathFiles = [];
+  if(isFilePath(route)){
+    arrPathFiles.push(route);
+  } else {
+    const readDirectory = fs.readdirSync(route);
+    readDirectory.forEach(file => {
+      const pathFile = path.join(route, file);
+      if (!isFilePath(pathFile)){
+       arrPathFiles = arrPathFiles.concat(getPathsFromDirectory(pathFile))
+      } else {
+       arrPathFiles.push(pathFile);
+      }
+    })
+  }
   return arrPathFiles;
 };
 
