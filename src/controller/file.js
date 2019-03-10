@@ -17,7 +17,8 @@ export const getLinks = (contentFile, routeFile) => {
     arrNew.push({
       href: elem.href, 
       text: (elem.textContent).slice(0,50), 
-      file: routeFile});
+      file: routeFile
+    });
   });
   return arrNew;
 };
