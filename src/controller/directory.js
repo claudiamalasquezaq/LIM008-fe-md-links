@@ -18,7 +18,7 @@ export const getPathsFromDirectory = route => {
       if (!isFilePath(pathFile)){
        arrPathFiles = arrPathFiles.concat(getPathsFromDirectory(pathFile))
       } else {
-       arrPathFiles.push(pathFile);
+        arrPathFiles = arrPathFiles.concat(getPathsFromDirectory(pathFile));
       }
     })
   }
