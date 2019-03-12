@@ -1,5 +1,5 @@
 {
-  "name": "md-links",
+  "name": "md-links-path",
   "version": "1.0.0",
   "description": "Markdown links",
   "main": "lib/index.js",
@@ -12,6 +12,10 @@
   "license": "MIT",
   "bin": {
     "md-links": "lib/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claudiamalasquezaq/LIM008-fe-md-links.git"
   },
   "scripts": {
     "build": "babel src -d lib",
