@@ -3,7 +3,7 @@ import { getPathsFromDirectory, searchFilesMd  } from './controller/directory.js
 import { getLinks, getContent } from './controller/file.js';
 import { validateLinks } from './controller/validate.js'
 
-const getArrLinks = (route) => new Promise((resolve) => {
+export const getArrLinks = (route) => new Promise((resolve) => {
   const arrPathFiles = getPathsFromDirectory(route);
   const arrMd = searchFilesMd(arrPathFiles);
   const arrLinks = arrMd.map(elem => getLinks(getContent(elem), elem));
@@ -20,7 +20,7 @@ const options = {
   validate: false
 };
 
-export const mdLinks = (path, options) => new Promise((resolve) => {
+export const mdLinks = (path, options) => new Promise((resolve, reject) => {
   let newPath = path;
   if(isValidPath(path)) {
     if(!isAbsolutePath(path)){
@@ -29,7 +29,7 @@ export const mdLinks = (path, options) => new Promise((resolve) => {
     if(options === undefined || !options.validate){
       return getArrLinks(newPath)
       .then(response => resolve(response))
-      .catch(err => console.log(err))
+      .catch(err => reject(err))
     }
     if(options.validate === true){
       return getArrLinks(newPath)
@@ -37,7 +37,7 @@ export const mdLinks = (path, options) => new Promise((resolve) => {
         validateLinks(res)
           .then(resp => resolve(resp));    
       })
-      .catch(err => console.log(err))
+      .catch(err => reject(err))
     } 
   } else {
     console.log('La ruta ingresada no existe');
