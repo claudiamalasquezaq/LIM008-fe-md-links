@@ -1,14 +1,18 @@
 {
-  "name": "social-network",
+  "name": "md-links",
   "version": "1.0.0",
-  "description": "Social Network @ Laboratoria",
-  "main": "src/index.html",
+  "description": "Markdown links",
+  "main": "lib/index.js",
   "keywords": [
     "javascript",
     "npm",
     "jest"
   ],
+  "author": "Claudia Malásquez Aquino",
   "license": "MIT",
+  "bin": {
+    "md-links": "lib/cli.js"
+  },
   "scripts": {
     "build": "babel src -d lib",
     "eslint": "eslint --ext .js src/ test/",
