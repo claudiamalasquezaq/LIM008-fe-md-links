@@ -1,9 +1,9 @@
-export const getStats = (arrLinks) => {
+export const getTotalLinks = (arrLinks) => {
   const totalLinks = arrLinks.length;
+  return `Total: ${totalLinks}`;
+}
+
+export const getUniqueLinks = (arrLinks) => {
   const uniqueLinks = [...new Set(arrLinks.map(elem => elem.href))].length;
-  const stats = {
-    Total: totalLinks,
-    Unique: uniqueLinks
-  }
-  return stats;
+  return `Unique: ${uniqueLinks}`;
 }
