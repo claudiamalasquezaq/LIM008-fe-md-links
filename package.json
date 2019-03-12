@@ -1,6 +1,6 @@
 {
   "name": "md-links-path",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Markdown links",
   "main": "lib/index.js",
   "keywords": [
