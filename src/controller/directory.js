@@ -15,11 +15,7 @@ export const getPathsFromDirectory = route => {
     const readDirectory = fs.readdirSync(route);
     readDirectory.forEach(file => {
       const pathFile = path.join(route, file);
-      if (!isFilePath(pathFile)){
-       arrPathFiles = arrPathFiles.concat(getPathsFromDirectory(pathFile))
-      } else {
-        arrPathFiles = arrPathFiles.concat(getPathsFromDirectory(pathFile));
-      }
+      arrPathFiles = arrPathFiles.concat(getPathsFromDirectory(pathFile))
     })
   }
   return arrPathFiles;
