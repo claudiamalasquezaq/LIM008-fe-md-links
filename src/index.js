@@ -16,16 +16,10 @@ export const getArrLinks = (route) => new Promise((resolve) => {
   resolve(newArr);
 });
 
-const options = {
-  validate: false
-};
-
 export const mdLinks = (path, options) => new Promise((resolve, reject) => {
   let newPath = path;
   if(isValidPath(path)) {
-    if(!isAbsolutePath(path)){
-      newPath = convertPathToAbsolute(path);
-    }
+    if(!isAbsolutePath(path)) newPath = convertPathToAbsolute(path);
     if(options === undefined || !options.validate){
       return getArrLinks(newPath)
       .then(response => resolve(response))
