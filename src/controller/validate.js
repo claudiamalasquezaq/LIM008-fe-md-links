@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 export const validateLinks = arrLinks => {
-  const arrNew = arrLinks.map(element => new Promise((resolve, reject) => {
+  const arrPromises = arrLinks.map(element => new Promise((resolve) => {
     return fetch(element.href)
       .then((res) => {
         if(res.status >= 200 && res.status < 400){
@@ -14,9 +14,13 @@ export const validateLinks = arrLinks => {
           resolve(element);
         }
       })
-      .catch(err => reject(err));
+      .catch(() => {
+        element.status = '';
+        element.statusText = 'Este link no existe';
+        resolve(element);
+      });
     }));
-    return Promise.all(arrNew)
+    return Promise.all(arrPromises)
     .then((res) => {
       return res;
     })
